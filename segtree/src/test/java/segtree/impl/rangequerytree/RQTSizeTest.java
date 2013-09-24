@@ -1,10 +1,10 @@
-package segtree.impl;
+package segtree.impl.rangequerytree;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import segtree.impl.SegmentTreeImpl;
+import segtree.impl.util.SegmentTreeUtils;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -15,7 +15,7 @@ import java.util.Collection;
  *         Date: 8/22/13
  */
 @RunWith(Parameterized.class)
-public class SegTreeSizeTest {
+public class RQTSizeTest {
 
     private static Object[][] inputAndExpectedValues = {
             //0 - input array size
@@ -30,19 +30,19 @@ public class SegTreeSizeTest {
     private int expectedSegTreeSize;
 
     @Parameterized.Parameters
-    public static Collection<Object[]> inputAndexpectedValueList() {
+    public static Collection<Object[]> inputAndExpectedValueList() {
         return Arrays.asList(inputAndExpectedValues);
     }
 
-    public SegTreeSizeTest(int arraySize, int expectedSegTreeSize) {
+    public RQTSizeTest(int arraySize, int expectedSegTreeSize) {
         this.arraySize = arraySize;
         this.expectedSegTreeSize = expectedSegTreeSize;
     }
 
     @Test
-    public void testSegtreeSizeCalculation_isCorrect() {
+    public void verifyThatSegmentTreeSizeCalculationIsCorrect() {
         Assert.assertEquals("Segment tree size is not properly calculated by original array size : " + arraySize,
-                expectedSegTreeSize, SegmentTreeImpl.treeSize(arraySize));
+                expectedSegTreeSize, SegmentTreeUtils.treeSize(arraySize));
     }
 
 }

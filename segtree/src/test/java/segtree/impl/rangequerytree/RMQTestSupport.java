@@ -1,15 +1,15 @@
-package segtree.impl;
+package segtree.impl.rangequerytree;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import segtree.impl.SegmentTreeImpl;
+import segtree.impl.RangeQueryableSegmentTree;
 
 /**
- * Parameterized test support class to check range minimum queries.
- * Descendants must specify input test data.
+ * Parametrized test support class to check range minimum queries.
+ * Descendants must specify input end expected test data.
  *
  * @author Denis Tyschenko
  *         Date: 8/25/13
@@ -17,7 +17,7 @@ import segtree.impl.SegmentTreeImpl;
 @RunWith(Parameterized.class)
 public abstract class RMQTestSupport<T> {
 
-    protected SegmentTreeImpl<T> segTree;
+    protected RangeQueryableSegmentTree<T> segTree;
     protected T[] inputArray;
     private int startRange;
     private int endRange;
@@ -25,7 +25,7 @@ public abstract class RMQTestSupport<T> {
 
     @Before
     public void setUp() {
-        this.segTree = new SegmentTreeImpl<T>(inputArray);
+        this.segTree = new RangeQueryableSegmentTree<>(inputArray);
     }
 
     public RMQTestSupport(int startRange, int endRange, T expectedRMQ) {
@@ -35,7 +35,7 @@ public abstract class RMQTestSupport<T> {
     }
 
     @Test
-    public void rmqTest_isCorrect() {
+    public void verifyThatRangeMinimumQueryIsCorrect() {
         Assert.assertEquals("Expected RMQ result does not match actual",
                 expectedRmq, segTree.rangeQuery(startRange, endRange));
     }
